@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:kahla/componments/Line.dart';
+import 'package:kahla/pages/profile.dart';
 
 /// The Me View is the content for the page Me
 class MeView extends StatefulWidget {
@@ -10,7 +12,7 @@ class __MeViewState extends State<MeView> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
+      child: ListView(
         children: <Widget>[
           /// myinfo componment will show user info in the page
           MyInfo(
@@ -33,6 +35,16 @@ class __MeViewState extends State<MeView> {
                   textColor: Colors.white),
             ],
           ),
+          MenusInMe(),
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
+            child: RaisedButton(
+              child: Text("Sign out"),
+              textColor: Colors.white,
+              color: Colors.redAccent,
+              onPressed: () {},
+            ),
+          )
         ],
       ),
       color: Colors.blueGrey[50],
@@ -99,11 +111,15 @@ class MyInfo extends StatelessWidget {
               Container(
                 child: Column(
                   children: <Widget>[
-                    Text(name),
+                    Text(
+                      name,
+                      style: TextStyle(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     Text(sign),
-                    Row(
-                      children: emailRow,
-                    )
+                    Row(children: emailRow)
                   ],
                   crossAxisAlignment: CrossAxisAlignment.start,
                 ),
@@ -116,6 +132,35 @@ class MyInfo extends StatelessWidget {
         onTap: () {},
       ),
       color: Colors.white,
+    );
+  }
+}
+
+/// the menu in me view after the user info
+class MenusInMe extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: <Widget>[
+          LineButton(
+            isBtn: true,
+            innerWidget: Row(
+              children: <Widget>[
+                Icon(Icons.settings),
+                Text("Advanced Setting")
+              ],
+            ),
+            backgroundColor: Colors.white,
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
+            },
+            borderAfter: false,
+          )
+        ],
+      ),
+      margin: EdgeInsets.only(top: 20),
     );
   }
 }
