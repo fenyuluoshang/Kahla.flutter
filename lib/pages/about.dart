@@ -124,7 +124,7 @@ class AboutPage extends StatelessWidget {
               decoration: BoxDecoration(
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                    color: Colors.grey[400],
+                    color: Colors.grey[300],
                     blurRadius: 2,
                     offset: Offset(0, 3),
                   ),

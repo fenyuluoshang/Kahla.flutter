@@ -13,7 +13,7 @@ class MeView extends StatefulWidget {
 class __MeViewState extends State<MeView> {
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return Container(
       child: ListView(
         children: <Widget>[
           /// myinfo componment will show user info in the page
@@ -142,7 +142,7 @@ class MyInfo extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.grey[400],
+            color: Colors.grey[300],
             blurRadius: 2,
             offset: Offset(0, 3),
           ),
@@ -211,7 +211,7 @@ class MenusInMe extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.grey[400],
+            color: Colors.grey[300],
             blurRadius: 2,
             offset: Offset(0, 3),
           ),
