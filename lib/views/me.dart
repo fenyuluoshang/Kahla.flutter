@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kahla/componments/Line.dart';
+import 'package:kahla/pages/about.dart';
 import 'package:kahla/pages/profile.dart';
+import 'package:kahla/pages/setting.dart';
 
 /// The Me View is the content for the page Me
 class MeView extends StatefulWidget {
@@ -99,39 +101,53 @@ class MyInfo extends StatelessWidget {
     });
 
     /// background white
-    return Material(
-      /// tap anime
-      child: InkWell(
-        /// this container is make a padding for the componment
-        child: Container(
-          child: Row(
-            children: <Widget>[
-              /// headimage will inner here
-              headimg,
-              Container(
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      name,
-                      style: TextStyle(
-                        fontSize: 21,
-                        fontWeight: FontWeight.bold,
+    return Container(
+      child: Material(
+        /// tap anime
+        child: InkWell(
+          /// this container is make a padding for the componment
+          child: Container(
+            child: Row(
+              children: <Widget>[
+                /// headimage will inner here
+                headimg,
+                Container(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        name,
+                        style: TextStyle(
+                          fontSize: 21,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(sign),
-                    Row(children: emailRow)
-                  ],
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                ),
-                padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-              )
-            ],
+                      Text(sign),
+                      Row(children: emailRow)
+                    ],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                  ),
+                  padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                )
+              ],
+            ),
+            padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
           ),
-          padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ProfilePage()));
+          },
         ),
-        onTap: () {},
+        color: Colors.white,
       ),
-      color: Colors.white,
+      decoration: BoxDecoration(
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey[400],
+            blurRadius: 2,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -143,21 +159,62 @@ class MenusInMe extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
+          /// Advanced Setting Button
           LineButton(
             isBtn: true,
             innerWidget: Row(
               children: <Widget>[
-                Icon(Icons.settings),
-                Text("Advanced Setting")
+                Icon(
+                  Icons.settings,
+                  color: Colors.blue,
+                ),
+                Container(
+                  child: Text("Advanced Setting"),
+                  margin: EdgeInsets.only(left: 10),
+                )
+              ],
+            ),
+            backgroundColor: Colors.white,
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AdvancedSettingPage()));
+            },
+            borderAfter: true,
+          ),
+
+          /// About Setting Button
+          LineButton(
+            isBtn: true,
+            innerWidget: Row(
+              children: <Widget>[
+                Icon(
+                  Icons.bookmark,
+                  color: Colors.blue,
+                ),
+                Container(
+                  child: Text("About Kahla"),
+                  margin: EdgeInsets.only(left: 10),
+                )
               ],
             ),
             backgroundColor: Colors.white,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
+                  MaterialPageRoute(builder: (context) => AboutPage()));
             },
             borderAfter: false,
-          )
+          ),
+        ],
+      ),
+      decoration: BoxDecoration(
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.grey[400],
+            blurRadius: 2,
+            offset: Offset(0, 3),
+          ),
         ],
       ),
       margin: EdgeInsets.only(top: 20),
