@@ -35,6 +35,14 @@ class _APPState extends State<MyApp> {
   ];
 
   /// global config data
+  // default server path is online server
+  String serverName = "default";
+  Map<String, String> servers = {
+    "defalut": "https://server.kahla.app",
+    "staging": "https://staging.server.kahla.app",
+    "dev": "https://dev.server.kahla.app",
+    "costom": ""
+  };
 
   @override
   Widget build(BuildContext context) {

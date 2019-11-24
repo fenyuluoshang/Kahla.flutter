@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kahla/componments/Line.dart';
 
 class AdvancedSettingPage extends StatelessWidget {
   @override
@@ -9,7 +10,34 @@ class AdvancedSettingPage extends StatelessWidget {
         centerTitle: true,
       ),
       // TODO: here is the page continue
-      body: Center(child: Text("Advanved Setting Test"),),
+      body: Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: Text("Notification"),
+            ),
+            LineButton(
+              isBtn: false,
+              innerWidget: Row(
+                children: <Widget>[
+                  Icon(
+                    Icons.settings,
+                    color: Colors.blue,
+                  ),
+                  Container(
+                    child: Text("Server"),
+                    margin: EdgeInsets.only(left: 10),
+                  )
+                ],
+              ),
+            ),
+            Container(
+              child: Text("Account"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
