@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kahla/componments/Line.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AdvancedSettingPage extends StatelessWidget {
   @override

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kahla/componments/Line.dart';
+import 'package:kahla/pages/Login.dart';
 import 'package:kahla/pages/about.dart';
 import 'package:kahla/pages/profile.dart';
 import 'package:kahla/pages/setting.dart';
@@ -41,6 +42,18 @@ class __MeViewState extends State<MeView> {
           Container(
             margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
             child: RaisedButton(
+              child: Text("Sign in"),
+              textColor: Colors.white,
+              color: Colors.blueAccent,
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.fromLTRB(5, 10, 5, 0),
+            child: RaisedButton(
               child: Text("Sign out"),
               textColor: Colors.white,
               color: Colors.redAccent,
@@ -59,6 +72,7 @@ class __MyInfoTagsData {
   final Color backgroundColor;
   final String text;
   final Color textColor;
+
   __MyInfoTagsData({this.backgroundColor, this.text, this.textColor});
 }
 

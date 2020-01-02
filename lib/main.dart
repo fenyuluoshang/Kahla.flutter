@@ -5,6 +5,7 @@ import 'package:kahla/views/me.dart';
 
 /// the type for router datas
 class RouterData {
+
   String title;
 
   Icon icon;
@@ -28,26 +29,18 @@ class MyApp extends StatefulWidget {
 class _APPState extends State<MyApp> {
   /// router data
   int _navigateSelectedIndex = 0;
-  final List<RouterData> routerDataList = [
-    RouterData(title: "Kahle", icon: Icon(Icons.chat), widget: KahlaView()),
-    RouterData(title: "Friends", icon: Icon(Icons.group), widget: FriendView()),
-    RouterData(title: "Me", icon: Icon(Icons.person), widget: MeView()),
-  ];
-
-  /// global config data
-  // default server path is online server
-  String serverName = "default";
-  Map<String, String> servers = {
-    "defalut": "https://server.kahla.app",
-    "staging": "https://staging.server.kahla.app",
-    "dev": "https://dev.server.kahla.app",
-    "costom": ""
-  };
 
   @override
   Widget build(BuildContext context) {
     // Makeup the data to the Item
     List<BottomNavigationBarItem> navigateItems = [];
+
+    final List<RouterData> routerDataList = [
+      RouterData(title: "Kahle", icon: Icon(Icons.chat), widget: KahlaView()),
+      RouterData(
+          title: "Friends", icon: Icon(Icons.group), widget: FriendView()),
+      RouterData(title: "Me", icon: Icon(Icons.person), widget: MeView()),
+    ];
 
     routerDataList.forEach((item) {
       navigateItems.add(BottomNavigationBarItem(
@@ -79,7 +72,6 @@ class _APPState extends State<MyApp> {
           items: navigateItems,
           currentIndex: _navigateSelectedIndex,
           selectedItemColor: Colors.blue[600],
-
           /// navigater select
           onTap: (int index) {
             setState(() {
