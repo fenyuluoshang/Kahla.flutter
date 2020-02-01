@@ -5,3 +5,5 @@ const Map<String, String> servers = {
   "staing": "staging.server.kahla.app",
   "dev": "dev.server.kahla.app"
 };
+
+const defaultServerName = "staing";

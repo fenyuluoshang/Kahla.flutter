@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:kahla/pluging/pluging.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:kahla/api/ApiStart.dart';
+import 'package:kahla/api/User.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,7 +10,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginState extends State<LoginPage> {
-
   //oauth page url
   final String pageurl = "/Auth/OAuth";
   //use for clean cookie
@@ -28,7 +25,6 @@ class LoginState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return FutureBuilder(
       future: __initWebView(),
       builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
@@ -39,7 +35,7 @@ class LoginState extends State<LoginPage> {
             ),
             body: WebView(
               initialUrl: 'https://' + snapshot.data + pageurl,
-              navigationDelegate: (NavigationRequest request) {
+              navigationDelegate: (NavigationRequest request) async {
                 print(request.url);
                 if (request.url.startsWith(
                     "https://" + snapshot.data + '/Auth/AuthResult')) {
@@ -53,10 +49,11 @@ class LoginState extends State<LoginPage> {
                     if (keyval[0] == 'code') code = keyval[1];
                   });
                   print(code);
+                  await AuthApi.AuthResult(code);
                   Navigator.pop(context);
                   return NavigationDecision.prevent;
-                }
-                return NavigationDecision.navigate;
+                } else
+                  return NavigationDecision.navigate;
               },
             ),
           );
@@ -70,7 +67,6 @@ class LoginState extends State<LoginPage> {
         }
       },
     );
-
   }
 
   Future<bool> cleanCookie() async {
@@ -78,18 +74,8 @@ class LoginState extends State<LoginPage> {
     return true;
   }
 
-  Future<String> __getServer() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String serverName = prefs.getString("server");
-    if (serverName == null) {
-      serverName = 'staing';
-      prefs.setString("server", serverName);
-    }
-    return servers[serverName];
-  }
-
   Future<String> __initWebView() async {
     await cleanCookie();
-    return await __getServer();
+    return await ApiBase.getServer();
   }
 }

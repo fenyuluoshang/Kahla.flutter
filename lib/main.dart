@@ -51,7 +51,6 @@ class _APPState extends State<MyApp> {
 
     return MaterialApp(
       title: 'Kahla',
-
       /// do not show the debug tag
       debugShowCheckedModeBanner: false,
 
